@@ -1,0 +1,7 @@
+numpy
+scikit-learn
+pypdf
+anthropic
+python-dotenv
+# Optional: semantic (embedding) search in addition to keyword search
+# sentence-transformers
