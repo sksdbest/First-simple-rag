@@ -1,7 +1,18 @@
+# Core
 numpy
 scikit-learn
+
+# Reading PDFs (fonttools removes the "fontTools is required" warnings)
 pypdf
+fonttools
+
+# Answer generation with Claude, and loading ANTHROPIC_API_KEY from a .env file
 anthropic
 python-dotenv
-# Optional: semantic (embedding) search in addition to keyword search
-# sentence-transformers
+
+# Semantic (embedding) search for hybrid retrieval.
+# Large install: pulls in PyTorch, and downloads a small embedding model on first use.
+sentence-transformers
+
+# Tests
+pytest
