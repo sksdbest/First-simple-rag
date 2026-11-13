@@ -170,7 +170,8 @@ def ask_claude(context, question):
         messages=[{"role": "user",
                    "content": f"Context:\n{context}\n\nQuestion: {question}"}],
     )
-    return msg.content[0].text
+    # the reply can start with a thinking block, so join only the text blocks
+    return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
 
 
 def pick_backend():
@@ -197,8 +198,8 @@ def answer(index: Index, question: str, k=TOP_K):
     except Exception as e:
         print(f"[warn] {backend} failed ({type(e).__name__}: {e}); "
               "showing passages instead", file=sys.stderr)
-    return ("(extractive mode — set ANTHROPIC_API_KEY or start Ollama for "
-            "generated answers)\n\n" + context), hits
+    return ("(extractive mode: no generated answer. Set ANTHROPIC_API_KEY or start "
+            "Ollama; if one is set, see the warning above)\n\n" + context), hits
 
 
 def show(ans, hits):
